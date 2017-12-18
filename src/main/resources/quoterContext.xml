@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--    <context:component-scan base-package="com.zhdanov.quoter" annotation-config/>-->
+    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
+
+    <bean id="terminator" class="com.zhdanov.quoter.quoter.Terminator">
+        <property name="messages">
+            <list value-type="java.lang.String">
+                <value>I'll be back</value>
+                <value>I need your glasses</value>
+                <ref bean="trustMe"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="shakeSpear" class="com.zhdanov.quoter.quoter.ShakeSpear" p:message="To be or not to be"/>
+
+    <bean id="trustMe" class="java.lang.String" c:value="Trust me"/>
+
+    <bean id="talkingRobot" class="com.zhdanov.quoter.quoter.TalkingRobotImpl">
+        <property name="quoters">
+            <list value-type="com.zhdanov.quoter.quoter.Quoter">
+                <ref bean="terminator"/>
+                <ref bean="shakeSpear"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="prototypeBean" class="java.lang.String" scope="prototype" destroy-method="length" c:_0="fadsl;"/>
+
+    <bean id="runThisMethod" class="com.zhdanov.bpp.RunMethodAnnotationBeanPostProcessor"/>
+    <bean id="transaction" class="com.zhdanov.bpp.TransactionBeanPostProcessor"/>
+    <bean id="benchmark" class="com.zhdanov.bpp.BenchmarkBeanPostProcessor"/>
+    <bean id="destroyMethodWarning" class="com.zhdanov.bpp.DestroyMethodBeanFactoryPostProcessor" />
+</beans>
