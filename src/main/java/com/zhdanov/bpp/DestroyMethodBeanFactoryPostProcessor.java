@@ -18,12 +18,10 @@ public class DestroyMethodBeanFactoryPostProcessor implements BeanFactoryPostPro
                 .map(beanDefinitionName -> (AbstractBeanDefinition) configurableListableBeanFactory.getBeanDefinition
                         (beanDefinitionName))
                 .filter(AbstractBeanDefinition::isPrototype)
+                .filter(abstractBeanDefinition -> abstractBeanDefinition.getDestroyMethodName() != null)
                 .forEach(abstractBeanDefinition -> {
-                    if (abstractBeanDefinition.getDestroyMethodName() != null) {
-                        System.out.println(abstractBeanDefinition.getBeanClassName() + " is prototype and has destroy" +
-                                " " +
-                                "method");
-                    }
+                    System.out.println(abstractBeanDefinition.getBeanClassName() + " is prototype and has destroy" +
+                            " method");
                 });
     }
 }

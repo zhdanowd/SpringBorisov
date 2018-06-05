@@ -1,22 +1,24 @@
 package com.zhdanov.quoter.quoter;
 
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-
 import com.zhdanov.bpp.Benchmark;
-import com.zhdanov.bpp.RunThisMethod;
 import com.zhdanov.bpp.Transaction;
 
-@Transaction
+import java.util.List;
+
 public class TalkingRobotImpl implements TalkingRobot {
 
     private List<Quoter> quoters;
 
+    @Transaction
     @Benchmark
     @Override
     public void talk() {
         quoters.stream().forEach(Quoter::sayQuote);
+    }
+
+    @Transaction
+    public void anotherTalk(){
+        System.out.println("hello");
     }
 
     public void setQuoters(List quoters) {

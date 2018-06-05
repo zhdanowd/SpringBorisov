@@ -1,14 +1,17 @@
 package com.zhdanov.quoter.quoter;
 
+import com.zhdanov.bpp.MyDeprecated;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.List;
 
-import com.zhdanov.bpp.Benchmark;
-import com.zhdanov.bpp.RunThisMethod;
-
-
+@MyDeprecated(newClass = T1000.class)
 public class Terminator implements Quoter {
 
     private List<String> messages;
+
+    @Autowired
+    private TalkingRobot talkingRobot;
 
     @Override
     public void sayQuote() {
@@ -21,5 +24,9 @@ public class Terminator implements Quoter {
 
     public List<String> getMessages() {
         return messages;
+    }
+
+    public TalkingRobot getTalkingRobot(){
+        return talkingRobot;
     }
 }

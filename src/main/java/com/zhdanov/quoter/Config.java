@@ -1,15 +1,14 @@
 package com.zhdanov.quoter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.zhdanov.quoter.quoter.Quoter;
 import com.zhdanov.quoter.quoter.TalkingRobot;
 import com.zhdanov.quoter.quoter.TalkingRobotImpl;
 import com.zhdanov.quoter.quoter.Terminator;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Configuration
 public class Config {
@@ -35,4 +34,5 @@ public class Config {
 
         return robot;
     }
+
 }
